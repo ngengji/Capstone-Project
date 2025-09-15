@@ -1,32 +1,26 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-  html, body { height:100%; margin:0; overflow:hidden; background:transparent; }
-  #wrap { position:absolute; inset:0; width:100%; height:100%; }
-</style>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2/dist/echarts-wordcloud.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: transparent; overflow: hidden;
+    }
+    #wc-container { position:absolute; inset:0; width:100%; height:100%; }
+  </style>
+  <!-- โหลดสคริปต์ที่จำเป็น (ลำดับนี้สำคัญ) -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2/dist/echarts-wordcloud.min.js"></script>
 </head>
 <body>
-  <div id="wrap"><!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Top 10 Platforms Used</title>
-                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts-wordcloud.min.js"></script>
-
-    
-</head>
-<body >
-    <div id="440840cb971648ab935c030f35661e46" class="chart-container" style="width:100%; height:100%; "></div>
-    <script>
-        var chart_440840cb971648ab935c030f35661e46 = echarts.init(
-            document.getElementById('440840cb971648ab935c030f35661e46'), 'white', {renderer: 'canvas'});
-        var option_440840cb971648ab935c030f35661e46 = {
+  <div id="wc-container"></div>
+  <script>
+    // สร้างกราฟ
+    var el = document.getElementById('wc-container');
+    var chart = echarts.init(el, null, {renderer:'canvas'});
+    var option = {
     "backgroundColor": "rgba(0,0,0,0)",
     "animation": true,
     "animationThreshold": 2000,
@@ -69,70 +63,70 @@
                     "name": "Amazon Web Services (AWS)",
                     "value": 10871,
                     "textStyle": {
-                        "color": "rgb(78,74,57)"
+                        "color": "rgb(30,141,11)"
                     }
                 },
                 {
                     "name": "Microsoft Azure",
                     "value": 6681,
                     "textStyle": {
-                        "color": "rgb(156,1,47)"
+                        "color": "rgb(76,17,160)"
                     }
                 },
                 {
                     "name": "Google Cloud",
                     "value": 5537,
                     "textStyle": {
-                        "color": "rgb(29,90,78)"
+                        "color": "rgb(90,153,111)"
                     }
                 },
                 {
                     "name": "Cloudflare",
                     "value": 3874,
                     "textStyle": {
-                        "color": "rgb(38,28,26)"
+                        "color": "rgb(160,32,156)"
                     }
                 },
                 {
                     "name": "Digital Ocean",
                     "value": 3170,
                     "textStyle": {
-                        "color": "rgb(79,94,129)"
+                        "color": "rgb(64,159,27)"
                     }
                 },
                 {
                     "name": "Firebase",
                     "value": 3025,
                     "textStyle": {
-                        "color": "rgb(87,37,129)"
+                        "color": "rgb(160,98,153)"
                     }
                 },
                 {
                     "name": "Vercel",
                     "value": 2875,
                     "textStyle": {
-                        "color": "rgb(31,122,131)"
+                        "color": "rgb(141,50,99)"
                     }
                 },
                 {
                     "name": "Heroku",
                     "value": 2002,
                     "textStyle": {
-                        "color": "rgb(84,148,41)"
+                        "color": "rgb(3,31,23)"
                     }
                 },
                 {
                     "name": "Netlify",
                     "value": 1662,
                     "textStyle": {
-                        "color": "rgb(109,126,136)"
+                        "color": "rgb(111,1,101)"
                     }
                 },
                 {
                     "name": "Hetzner",
                     "value": 1392,
                     "textStyle": {
-                        "color": "rgb(19,0,31)"
+                        "color": "rgb(68,132,58)"
                     }
                 }
             ],
@@ -211,42 +205,14 @@
         }
     ]
 };
-        chart_440840cb971648ab935c030f35661e46.setOption(option_440840cb971648ab935c030f35661e46);
-            window.addEventListener('resize', function(){
-                chart_440840cb971648ab935c030f35661e46.resize();
-            })
-    </script>
-</body>
-</html>
-</div>
-  <script>
-    function fit() {
-      var el = document.querySelector('div[id^="chart_"]');
-      if (!el) return;
-      // บังคับขนาดเต็มกรอบ
-      el.style.width = '100%';
-      el.style.height = '100%';
-      var chart = echarts.getInstanceByDom(el);
-      if (!chart) return;
+    chart.setOption(option);
 
-      // ปรับ series ให้อยู่กลางและกินพื้นที่เต็ม
-      var opt = chart.getOption();
-      try {
-        opt.series[0].left = 'center';
-        opt.series[0].top = 'center';
-        opt.series[0].width = '100%';
-        opt.series[0].height = '100%';
-        opt.series[0].gridSize = 6;          // ยิ่งเล็กยิ่งแน่น (4–10)
-        opt.series[0].rotationRange = [0, 0]; // ให้ตรงกับ rotate_step=0
-        chart.setOption(opt, true);
-      } catch(e) {}
-
-      chart.resize();
-    }
+    // ทำให้กราฟยืดเต็มกรอบเสมอ
+    function fit() { chart && chart.resize(); }
     window.addEventListener('load', fit);
+    window.addEventListener('resize', fit);
     requestAnimationFrame(fit);
     setTimeout(fit, 120);
-    window.addEventListener('resize', fit);
   </script>
 </body>
 </html>
