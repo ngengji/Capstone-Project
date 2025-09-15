@@ -1,19 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html, body { height:100%; margin:0; overflow:hidden; background:transparent; }
+  #wrap { position:absolute; inset:0; width:100%; height:100%; }
+</style>
+<!-- สคริปต์ที่จำเป็น -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2/dist/echarts-wordcloud.min.js"></script>
+</head>
+<body>
+  <div id="wrap"><!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Top 10 Platforms Used</title>
-                <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/echarts.min.js"></script>
-            <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/echarts-wordcloud.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts-wordcloud.min.js"></script>
 
     
 </head>
 <body >
-    <div id="7adacf3c5313498a8c6986718557a4f5" class="chart-container" style="width:100%; height:100%; "></div>
+    <div id="8ee714c9537d436dad175ac6c13f90c8" class="chart-container" style="width:100%; height:100%; "></div>
     <script>
-        var chart_7adacf3c5313498a8c6986718557a4f5 = echarts.init(
-            document.getElementById('7adacf3c5313498a8c6986718557a4f5'), 'white', {renderer: 'canvas'});
-        var option_7adacf3c5313498a8c6986718557a4f5 = {
+        var chart_8ee714c9537d436dad175ac6c13f90c8 = echarts.init(
+            document.getElementById('8ee714c9537d436dad175ac6c13f90c8'), 'white', {renderer: 'canvas'});
+        var option_8ee714c9537d436dad175ac6c13f90c8 = {
     "backgroundColor": "rgba(0,0,0,0)",
     "animation": true,
     "animationThreshold": 2000,
@@ -56,70 +70,70 @@
                     "name": "Amazon Web Services (AWS)",
                     "value": 10871,
                     "textStyle": {
-                        "color": "rgb(8,73,78)"
+                        "color": "rgb(81,30,91)"
                     }
                 },
                 {
                     "name": "Microsoft Azure",
                     "value": 6681,
                     "textStyle": {
-                        "color": "rgb(156,41,64)"
+                        "color": "rgb(31,15,74)"
                     }
                 },
                 {
                     "name": "Google Cloud",
                     "value": 5537,
                     "textStyle": {
-                        "color": "rgb(121,51,97)"
+                        "color": "rgb(63,140,134)"
                     }
                 },
                 {
                     "name": "Cloudflare",
                     "value": 3874,
                     "textStyle": {
-                        "color": "rgb(38,149,102)"
+                        "color": "rgb(11,114,91)"
                     }
                 },
                 {
                     "name": "Digital Ocean",
                     "value": 3170,
                     "textStyle": {
-                        "color": "rgb(54,150,64)"
+                        "color": "rgb(103,44,115)"
                     }
                 },
                 {
                     "name": "Firebase",
                     "value": 3025,
                     "textStyle": {
-                        "color": "rgb(41,118,129)"
+                        "color": "rgb(146,53,126)"
                     }
                 },
                 {
                     "name": "Vercel",
                     "value": 2875,
                     "textStyle": {
-                        "color": "rgb(31,97,142)"
+                        "color": "rgb(88,56,81)"
                     }
                 },
                 {
                     "name": "Heroku",
                     "value": 2002,
                     "textStyle": {
-                        "color": "rgb(56,122,9)"
+                        "color": "rgb(24,109,158)"
                     }
                 },
                 {
                     "name": "Netlify",
                     "value": 1662,
                     "textStyle": {
-                        "color": "rgb(16,128,147)"
+                        "color": "rgb(56,8,24)"
                     }
                 },
                 {
                     "name": "Hetzner",
                     "value": 1392,
                     "textStyle": {
-                        "color": "rgb(40,81,67)"
+                        "color": "rgb(25,71,76)"
                     }
                 }
             ],
@@ -201,10 +215,27 @@
         }
     ]
 };
-        chart_7adacf3c5313498a8c6986718557a4f5.setOption(option_7adacf3c5313498a8c6986718557a4f5);
+        chart_8ee714c9537d436dad175ac6c13f90c8.setOption(option_8ee714c9537d436dad175ac6c13f90c8);
             window.addEventListener('resize', function(){
-                chart_7adacf3c5313498a8c6986718557a4f5.resize();
+                chart_8ee714c9537d436dad175ac6c13f90c8.resize();
             })
     </script>
+</body>
+</html>
+</div>
+  <script>
+    function fit() {
+      var el = document.querySelector('div[id^="chart_"]');
+      if (!el) return;
+      el.style.width = '100%';
+      el.style.height = '100%';
+      var chart = echarts.getInstanceByDom(el);
+      if (chart) chart.resize();
+    }
+    window.addEventListener('load', fit);
+    requestAnimationFrame(fit);
+    setTimeout(fit, 120);
+    window.addEventListener('resize', fit);
+  </script>
 </body>
 </html>
