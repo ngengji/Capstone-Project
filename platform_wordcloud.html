@@ -4,210 +4,41 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    html, body {
-      margin: 0; padding: 0; height: 100%;
-      background: transparent; overflow: hidden;
-    }
+    html, body { margin:0; padding:0; height:100%; background:transparent; overflow:hidden; }
     #wc-container { position:absolute; inset:0; width:100%; height:100%; }
   </style>
-  <!-- โหลดสคริปต์ที่จำเป็น (ลำดับนี้สำคัญ) -->
-  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2/dist/echarts-wordcloud.min.js"></script>
+  <!-- Load scripts (order matters) -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.0.0/dist/echarts-wordcloud.min.js"></script>
 </head>
 <body>
   <div id="wc-container"></div>
   <script>
-    // สร้างกราฟ
-    var el = document.getElementById('wc-container');
-    var chart = echarts.init(el, null, {renderer:'canvas'});
-    var option = {
-    "backgroundColor": "rgba(0,0,0,0)",
-    "animation": true,
-    "animationThreshold": 2000,
-    "animationDuration": 1000,
-    "animationEasing": "cubicOut",
-    "animationDelay": 0,
-    "animationDurationUpdate": 300,
-    "animationEasingUpdate": "cubicOut",
-    "animationDelayUpdate": 0,
-    "aria": {
-        "enabled": false
-    },
-    "color": [
-        "#5470c6",
-        "#91cc75",
-        "#fac858",
-        "#ee6666",
-        "#73c0de",
-        "#3ba272",
-        "#fc8452",
-        "#9a60b4",
-        "#ea7ccc"
-    ],
-    "series": [
-        {
-            "type": "wordCloud",
-            "shape": "circle",
-            "rotationRange": [
-                -90,
-                90
-            ],
-            "rotationStep": 0,
-            "girdSize": 4,
-            "sizeRange": [
-                18,
-                68
-            ],
-            "data": [
-                {
-                    "name": "Amazon Web Services (AWS)",
-                    "value": 10871,
-                    "textStyle": {
-                        "color": "rgb(30,141,11)"
-                    }
-                },
-                {
-                    "name": "Microsoft Azure",
-                    "value": 6681,
-                    "textStyle": {
-                        "color": "rgb(76,17,160)"
-                    }
-                },
-                {
-                    "name": "Google Cloud",
-                    "value": 5537,
-                    "textStyle": {
-                        "color": "rgb(90,153,111)"
-                    }
-                },
-                {
-                    "name": "Cloudflare",
-                    "value": 3874,
-                    "textStyle": {
-                        "color": "rgb(160,32,156)"
-                    }
-                },
-                {
-                    "name": "Digital Ocean",
-                    "value": 3170,
-                    "textStyle": {
-                        "color": "rgb(64,159,27)"
-                    }
-                },
-                {
-                    "name": "Firebase",
-                    "value": 3025,
-                    "textStyle": {
-                        "color": "rgb(160,98,153)"
-                    }
-                },
-                {
-                    "name": "Vercel",
-                    "value": 2875,
-                    "textStyle": {
-                        "color": "rgb(141,50,99)"
-                    }
-                },
-                {
-                    "name": "Heroku",
-                    "value": 2002,
-                    "textStyle": {
-                        "color": "rgb(3,31,23)"
-                    }
-                },
-                {
-                    "name": "Netlify",
-                    "value": 1662,
-                    "textStyle": {
-                        "color": "rgb(111,1,101)"
-                    }
-                },
-                {
-                    "name": "Hetzner",
-                    "value": 1392,
-                    "textStyle": {
-                        "color": "rgb(68,132,58)"
-                    }
-                }
-            ],
-            "drawOutOfBound": false,
-            "textStyle": {
-                "emphasis": {}
-            },
-            "rippleEffect": {
-                "show": true,
-                "brushType": "stroke",
-                "scale": 2.5,
-                "period": 4
-            },
-            "textstyle_opts": {
-                "color": function (params) {  var colors = ['#133B57','#58AFCB','#012B4C','#254EB9','#02233E',                '#8AF1C0','#033151','#075383','#2E9ACD','#58E3D3'];  var idx = (params && typeof params.dataIndex !== 'undefined')              ? params.dataIndex % colors.length              : Math.floor(Math.random()*colors.length);  return colors[idx];}
-            }
-        }
-    ],
-    "legend": [
-        {
-            "data": [],
-            "selected": {},
-            "show": false,
-            "padding": 5,
-            "itemGap": 10,
-            "itemWidth": 25,
-            "itemHeight": 14,
-            "backgroundColor": "transparent",
-            "borderColor": "#ccc",
-            "borderRadius": 0,
-            "pageButtonItemGap": 5,
-            "pageButtonPosition": "end",
-            "pageFormatter": "{current}/{total}",
-            "pageIconColor": "#2f4554",
-            "pageIconInactiveColor": "#aaa",
-            "pageIconSize": 15,
-            "animationDurationUpdate": 800,
-            "selector": false,
-            "selectorPosition": "auto",
-            "selectorItemGap": 7,
-            "selectorButtonGap": 10
-        }
-    ],
-    "tooltip": {
-        "show": true,
-        "trigger": "item",
-        "triggerOn": "mousemove|click",
-        "axisPointer": {
-            "type": "line"
+    const data = [{"name": "Amazon Web Services (AWS)", "value": 10871, "textStyle": {"color": "#133B57"}}, {"name": "Microsoft Azure", "value": 6681, "textStyle": {"color": "#58AFCB"}}, {"name": "Google Cloud", "value": 5537, "textStyle": {"color": "#012B4C"}}, {"name": "Cloudflare", "value": 3874, "textStyle": {"color": "#254EB9"}}, {"name": "Digital Ocean", "value": 3170, "textStyle": {"color": "#02233E"}}, {"name": "Firebase", "value": 3025, "textStyle": {"color": "#8AF1C0"}}, {"name": "Vercel", "value": 2875, "textStyle": {"color": "#033151"}}, {"name": "Heroku", "value": 2002, "textStyle": {"color": "#075383"}}, {"name": "Netlify", "value": 1662, "textStyle": {"color": "#2E9ACD"}}, {"name": "Hetzner", "value": 1392, "textStyle": {"color": "#58E3D3"}}];
+
+    const option = {
+      series: [{
+        type: 'wordCloud',
+        shape: 'circle',
+        left: 'center',
+        top: 'center',
+        width: '100%',
+        height: '100%',
+        sizeRange: [18, 68],        // ปรับถ้าตัวอักษรล้น/เล็กไป
+        rotationRange: [0, 0],      // ไม่เอียง
+        gridSize: 6,                // ยิ่งเล็กยิ่งแน่น (4–10)
+        drawOutOfBound: false,
+        textStyle: {
+          fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif'
         },
-        "showContent": true,
-        "alwaysShowContent": false,
-        "showDelay": 0,
-        "hideDelay": 100,
-        "enterable": false,
-        "confine": false,
-        "appendToBody": false,
-        "transitionDuration": 0.4,
-        "textStyle": {
-            "fontSize": 14
-        },
-        "borderWidth": 0,
-        "padding": 5,
-        "order": "seriesAsc"
-    },
-    "title": [
-        {
-            "show": true,
-            "target": "blank",
-            "subtarget": "blank",
-            "padding": 5,
-            "itemGap": 10,
-            "textAlign": "auto",
-            "textVerticalAlign": "auto",
-            "triggerEvent": false
-        }
-    ]
-};
+        data: data
+      }]
+    };
+
+    const el = document.getElementById('wc-container');
+    const chart = echarts.init(el, null, {renderer: 'canvas'});
     chart.setOption(option);
 
-    // ทำให้กราฟยืดเต็มกรอบเสมอ
     function fit() { chart && chart.resize(); }
     window.addEventListener('load', fit);
     window.addEventListener('resize', fit);
