@@ -1,19 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html,body{height:100%;margin:0;overflow:hidden;background:transparent}
+  #wrap{height:100%;}
+</style>
+<!-- โหลดสคริปต์ที่จำเป็น (ECharts + WordCloud plugin) -->
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2/dist/echarts-wordcloud.min.js"></script>
+</head>
+<body>
+<div id="wrap"><!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Awesome-pyecharts</title>
+    <title>Top 10 Platforms Used</title>
                 <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/echarts.min.js"></script>
             <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/echarts-wordcloud.min.js"></script>
 
     
 </head>
 <body >
-    <div id="713767ce87f24bf983a908eaa9380a78" class="chart-container" style="width:900px; height:500px; "></div>
+    <div id="d2e93272454b4bd48970f11970f3ba9f" class="chart-container" style="width:100%; height:600px; "></div>
     <script>
-        var chart_713767ce87f24bf983a908eaa9380a78 = echarts.init(
-            document.getElementById('713767ce87f24bf983a908eaa9380a78'), 'white', {renderer: 'canvas'});
-        var option_713767ce87f24bf983a908eaa9380a78 = {
+        var chart_d2e93272454b4bd48970f11970f3ba9f = echarts.init(
+            document.getElementById('d2e93272454b4bd48970f11970f3ba9f'), 'white', {renderer: 'canvas'});
+        var option_d2e93272454b4bd48970f11970f3ba9f = {
+    "backgroundColor": "rgba(0,0,0,0)",
     "animation": true,
     "animationThreshold": 2000,
     "animationDuration": 1000,
@@ -45,80 +60,80 @@
                 90
             ],
             "rotationStep": 45,
-            "girdSize": 20,
+            "girdSize": 6,
             "sizeRange": [
-                15,
-                100
+                18,
+                72
             ],
             "data": [
                 {
                     "name": "Amazon Web Services (AWS)",
                     "value": 10871,
                     "textStyle": {
-                        "color": "rgb(7,10,103)"
+                        "color": "rgb(112,146,127)"
                     }
                 },
                 {
                     "name": "Microsoft Azure",
                     "value": 6681,
                     "textStyle": {
-                        "color": "rgb(84,55,118)"
+                        "color": "rgb(35,154,49)"
                     }
                 },
                 {
                     "name": "Google Cloud",
                     "value": 5537,
                     "textStyle": {
-                        "color": "rgb(7,152,105)"
+                        "color": "rgb(148,34,55)"
                     }
                 },
                 {
                     "name": "Cloudflare",
                     "value": 3874,
                     "textStyle": {
-                        "color": "rgb(47,132,25)"
+                        "color": "rgb(79,150,22)"
                     }
                 },
                 {
                     "name": "Digital Ocean",
                     "value": 3170,
                     "textStyle": {
-                        "color": "rgb(130,84,13)"
+                        "color": "rgb(139,88,46)"
                     }
                 },
                 {
                     "name": "Firebase",
                     "value": 3025,
                     "textStyle": {
-                        "color": "rgb(13,63,88)"
+                        "color": "rgb(21,10,34)"
                     }
                 },
                 {
                     "name": "Vercel",
                     "value": 2875,
                     "textStyle": {
-                        "color": "rgb(104,19,113)"
+                        "color": "rgb(102,94,109)"
                     }
                 },
                 {
                     "name": "Heroku",
                     "value": 2002,
                     "textStyle": {
-                        "color": "rgb(107,114,114)"
+                        "color": "rgb(10,105,150)"
                     }
                 },
                 {
                     "name": "Netlify",
                     "value": 1662,
                     "textStyle": {
-                        "color": "rgb(94,64,99)"
+                        "color": "rgb(149,106,118)"
                     }
                 },
                 {
                     "name": "Hetzner",
                     "value": 1392,
                     "textStyle": {
-                        "color": "rgb(74,23,90)"
+                        "color": "rgb(66,153,13)"
                     }
                 }
             ],
@@ -132,7 +147,7 @@
         {
             "data": [],
             "selected": {},
-            "show": true,
+            "show": false,
             "padding": 5,
             "itemGap": 10,
             "itemWidth": 25,
@@ -178,9 +193,11 @@
     "title": [
         {
             "show": true,
-            "text": "Top 10 Platforms Used",
+            "text": "Top 10 Platforms Used (without stopwords)",
             "target": "blank",
             "subtarget": "blank",
+            "left": "2%",
+            "top": "2%",
             "padding": 5,
             "itemGap": 10,
             "textAlign": "auto",
@@ -189,7 +206,22 @@
         }
     ]
 };
-        chart_713767ce87f24bf983a908eaa9380a78.setOption(option_713767ce87f24bf983a908eaa9380a78);
+        chart_d2e93272454b4bd48970f11970f3ba9f.setOption(option_d2e93272454b4bd48970f11970f3ba9f);
+            window.addEventListener('resize', function(){
+                chart_d2e93272454b4bd48970f11970f3ba9f.resize();
+            })
     </script>
+</body>
+</html>
+</div>
+<script>
+  // ให้กราฟยืดตามขนาดกรอบเวลา resize
+  window.addEventListener('resize', function(){
+    const div = document.querySelector('div[id^="chart_"]');
+    if (!div) return;
+    const chart = echarts.getInstanceByDom(div);
+    if (chart) chart.resize();
+  });
+</script>
 </body>
 </html>
