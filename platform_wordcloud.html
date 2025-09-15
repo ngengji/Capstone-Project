@@ -4,17 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    html, body { margin:0; padding:0; height:100%; background:transparent; overflow:hidden; }
-    #wc-container { position:absolute; inset:0; width:100%; height:100%; }
+    html, body {
+      margin:0; padding:0; height:100%;
+      background:transparent; overflow:hidden;
+    }
+    #wc { position:absolute; inset:0; }
   </style>
-  <!-- Load scripts (order matters) -->
+  <!-- pin versions to avoid CDN surprises -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.0.0/dist/echarts-wordcloud.min.js"></script>
 </head>
 <body>
-  <div id="wc-container"></div>
+  <div id="wc"></div>
   <script>
     const data = [{"name": "Amazon Web Services (AWS)", "value": 10871, "textStyle": {"color": "#133B57"}}, {"name": "Microsoft Azure", "value": 6681, "textStyle": {"color": "#58AFCB"}}, {"name": "Google Cloud", "value": 5537, "textStyle": {"color": "#012B4C"}}, {"name": "Cloudflare", "value": 3874, "textStyle": {"color": "#254EB9"}}, {"name": "Digital Ocean", "value": 3170, "textStyle": {"color": "#02233E"}}, {"name": "Firebase", "value": 3025, "textStyle": {"color": "#8AF1C0"}}, {"name": "Vercel", "value": 2875, "textStyle": {"color": "#033151"}}, {"name": "Heroku", "value": 2002, "textStyle": {"color": "#075383"}}, {"name": "Netlify", "value": 1662, "textStyle": {"color": "#2E9ACD"}}, {"name": "Hetzner", "value": 1392, "textStyle": {"color": "#58E3D3"}}];
+
+    // size container with real pixel numbers BEFORE init (critical fix)
+    function sizeContainer() {
+      const el = document.getElementById('wc');
+      const w = Math.max(320, (document.documentElement.clientWidth || window.innerWidth || 800));
+      const h = Math.max(320, (document.documentElement.clientHeight || window.innerHeight || 600));
+      el.style.width  = w + 'px';
+      el.style.height = h + 'px';
+    }
+
+    sizeContainer();
+
+    const el = document.getElementById('wc');
+    const chart = echarts.init(el, null, {renderer:'canvas'});
 
     const option = {
       series: [{
@@ -24,9 +41,10 @@
         top: 'center',
         width: '100%',
         height: '100%',
-        sizeRange: [18, 68],        // ปรับถ้าตัวอักษรล้น/เล็กไป
-        rotationRange: [0, 0],      // ไม่เอียง
-        gridSize: 6,                // ยิ่งเล็กยิ่งแน่น (4–10)
+        // tune these if words look too big/small
+        sizeRange: [18, 68],
+        rotationRange: [0, 0],      // no tilt
+        gridSize: 6,                // 4-10 (smaller = denser)
         drawOutOfBound: false,
         textStyle: {
           fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif'
@@ -35,13 +53,16 @@
       }]
     };
 
-    const el = document.getElementById('wc-container');
-    const chart = echarts.init(el, null, {renderer: 'canvas'});
     chart.setOption(option);
+    chart.resize();
 
-    function fit() { chart && chart.resize(); }
-    window.addEventListener('load', fit);
+    // keep chart in sync with container size
+    function fit() {
+      sizeContainer();
+      chart && chart.resize();
+    }
     window.addEventListener('resize', fit);
+    window.addEventListener('load', fit);
     requestAnimationFrame(fit);
     setTimeout(fit, 120);
   </script>
